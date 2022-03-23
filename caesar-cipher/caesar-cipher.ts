@@ -20,8 +20,16 @@ function generateKey(shift: number): TablePair {
   const decryptKey = {};
 
   for (let i = 0; i < 26; i++) {
-    Object.assign(encryptKey, { [alphabet[i]]: alphabet[(shift + i) % alphabetCount] });
-    Object.assign(decryptKey, { [alphabet[(shift + i) % alphabetCount]]: alphabet[i] });
+    const encryptedIndex =
+      (shift + i) % alphabetCount < 0
+        ? alphabetCount - Math.abs((shift + i) % alphabetCount)
+        : (shift + i) % alphabetCount;
+    Object.assign(encryptKey, {
+      [alphabet[i % alphabetCount]]: alphabet[encryptedIndex],
+    });
+    Object.assign(decryptKey, {
+      [alphabet[encryptedIndex]]: alphabet[i % alphabetCount],
+    });
   }
 
   return { encryptKey, decryptKey };
@@ -60,15 +68,21 @@ function decrypt(secret: string, shift: number) {
   return message;
 }
 
-// @ts-expect-error
 if (import.meta.vitest) {
-  // @ts-expect-error
-  const { it, expect } = import.meta.vitest;
-  it('GIVEN usual shift and message', () => {
-    const shift = 2;
-    const message = 'hello';
-    const secret = encrypt(message, shift);
-    const result = decrypt(secret, shift);
-    expect(result).toBe(message);
-  });
+  const { it, expect, describe } = import.meta.vitest;
+  describe.each([
+    { message: 'abc', shift: 2, secret: 'cde' },
+    { message: 'edf', shift: 0, secret: 'edf' },
+    { message: 'abc', shift: 27, secret: 'bcd' },
+    { message: 'bcd', shift: -2, secret: 'zab' },
+  ])(
+    'describe message: $message shift: $shift to secret: $secret',
+    ({ message, shift, secret }) => {
+      it(`GIVE shift:${shift}, WHEN message: ${message}, WILL encrypted to ${secret} `, () => {
+        const encryptedMessage = encrypt(message, shift);
+        expect(encryptedMessage).toBe(secret);
+        expect(decrypt(encryptedMessage, shift)).toBe(message);
+      });
+    },
+  );
 }
