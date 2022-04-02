@@ -10,7 +10,7 @@ export function shuffleArray(arr: any[]): any[] {
 
 if (import.meta.vitest) {
   const { it, expect } = import.meta.vitest;
-  it(`GIVE one array, return shuffled array contain same values`, () => {
+  it(`GIVE one array, return shuffled array contain same valus`, () => {
     const unshuffled = ['hello', 'a', 't', 'q', 1, 2, 3, { cats: true }];
     const shuffled = shuffleArray(unshuffled);
     expect(shuffled).toContain(unshuffled[0]);
