@@ -1,3 +1,5 @@
+import type { Secret, Message } from '../utils/types';
+
 const alphabetCount = 26;
 const alphabet = Array(alphabetCount)
   .fill(0)
@@ -10,6 +12,7 @@ type TablePair = {
 };
 
 /**
+ * @see {@link https://en.wikipedia.org/wiki/Caesar_cipher}
  * Generate encrypt and decrypt table.
  * @param shift - shift value
  * @returns two key tables for encrypt and decrypt
@@ -41,7 +44,7 @@ function generateKey(shift: number): TablePair {
  * @returns secret from message
  *
  */
-function encrypt(message: string, shift: number) {
+function encrypt(message: Message, shift: number) {
   let secret = '';
   const { encryptKey } = generateKey(shift);
 
@@ -57,7 +60,7 @@ function encrypt(message: string, shift: number) {
  * @returns message from secret
  *
  */
-function decrypt(secret: string, shift: number) {
+function decrypt(secret: Secret, shift: number) {
   let message = '';
   const { decryptKey } = generateKey(shift);
 

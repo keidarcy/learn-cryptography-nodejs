@@ -5,6 +5,7 @@ import { shuffleArray } from '../utils/shuffleArray';
 type KeyMap = Record<string, string>;
 
 /**
+ * @see {@link https://en.wikipedia.org/wiki/Substitution_cipher}
  * key size = factorial(26) {@link factorial}
  * 26! ≈ 288.4, or about 88 bits.
  * This cipher is not very strong, and is easily broken @see {@link https://en.wikipedia.org/wiki/Substitution_cipher | more}.
