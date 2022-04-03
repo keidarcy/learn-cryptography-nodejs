@@ -8,4 +8,4 @@
 - [stream-cipher.ts](./stream-cipher/stream-cipher.ts)
 - [substitution-cipher.ts](./substitution-cipher/substitution-cipher.ts)
 
- Updated at: 2022-04-03 09:36
+ Updated at: 2022-04-03 09:50
