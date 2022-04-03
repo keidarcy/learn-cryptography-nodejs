@@ -5,12 +5,12 @@ on:
     branches: [master]
 
 jobs:
-  markdown-lint:
+  generate-readme:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Generate README.
-        run: node ./.github/readme-generate.js
+        run: node ./.github/generate-readme.js
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "chore: update"
