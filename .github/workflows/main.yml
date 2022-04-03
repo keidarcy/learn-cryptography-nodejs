@@ -9,6 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.1
+        with:
+          version: 6.32.1
+      - run: pnpm install
+      - run: pnpm ci:test
       - name: Generate README.
         run: node ./.github/generate-readme.js
       - uses: stefanzweifel/git-auto-commit-action@v4

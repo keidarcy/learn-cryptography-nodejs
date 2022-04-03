@@ -30,4 +30,8 @@ if (import.meta.vitest) {
   it('GIVE TEST get binary 01010100010001010101001101010100', () => {
     expect(textToBin('TEST')).toBe('01010100010001010101001101010100');
   });
+
+  it('GIVEN 97 GET 1100001 as binary', () => {
+    expect(numToBinStr(97)).toBe('1100001');
+  });
 }

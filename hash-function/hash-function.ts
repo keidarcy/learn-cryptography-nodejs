@@ -1,4 +1,4 @@
-import { createHash, Hash } from 'crypto';
+import { createHash } from 'crypto';
 /**
  * @see {@link https://en.wikipedia.org/wiki/Hash_function | hash function}
  * @remarks
