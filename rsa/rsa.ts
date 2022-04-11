@@ -48,6 +48,16 @@ function isPrime(num: number): boolean {
  * ### RSA {@link https://en.wikipedia.org/wiki/RSA_(cryptosystem) | cryptosystem}
  * > The RSA algorithm involves four steps: key generation, key distribution, encryption, and decryption.
  * - key generation
+ *
+ * ```bash
+ * ssh-keygen -f ./mykey # default n is 3072 bit
+ *
+ * openssl genrsa -out private.pem # default n is 2048 bit
+ * openssl genrsa -out private.pem 3072 # n is 3072 bit
+ * openssl rsa -in private.pem -pubout > public.pem # generate public key from private key
+ * openssl rsa -in private.pem -text -noout # read n(modulus) e(publicExponent) d(privateExponent) p(prime1) q(prime2)
+ * openssl rsa -pubin -in public.pem -noout -modulus # read n
+ * ```
  */
 function keyGeneration(): KeyGenerationReturnType {
   const args = getN();
