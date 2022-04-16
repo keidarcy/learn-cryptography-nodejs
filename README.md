@@ -10,4 +10,4 @@
 - [stream-cipher.ts](./stream-cipher/stream-cipher.ts)
 - [substitution-cipher.ts](./substitution-cipher/substitution-cipher.ts)
 
- Updated at: 2022-04-11 05:49
+ Updated at: 2022-04-16 07:53
